@@ -1,0 +1,18 @@
+server:
+  port: 8030
+  contextPath: /uaa
+management:
+  contextPath: /mgmt
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/alan-oauth?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    connectionTestQuery: SELECT 1
+    connectionTimeout: 30000
+    idleTimeout: 600000
+    maxLifetime: 1800000
+    maximumPoolSize: 5
+    minimumIdle: 1  

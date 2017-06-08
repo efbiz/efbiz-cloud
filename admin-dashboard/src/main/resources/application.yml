@@ -1,0 +1,4 @@
+server:
+  port: 8040
+management:
+  contextPath: /mgmt

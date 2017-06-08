@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: zipkin-server
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+zipkin:
+  storage:
+    type: elasticsearch
+    elasticsearch:
+      cluster: elasticsearch
+      hosts: http://localhost:9200
+      index: zipkin
+      index-shards: 5
+      index-replicas: 1 
+eureka:
+  instance:
+    hostname: localhost
+    statusPageUrlPath: /mgmt/info
+    healthCheckUrlPath: /mgmt/health 
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://efbiz:efbiz.org@peer1:8761/eureka/,http://efbiz:efbiz.org@peer2:8762/eureka/,http://efbiz:efbiz.org@peer3:8763/eureka/
+management:
+  security.enabled: false
+  contextPath: /mgmt
+endpoints.health.sensitive: false  
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:8030/uaa/oauth/token
+      userAuthorizationUri: http://localhost:8030/uaa/oauth/authorize
+      clientId: efbiz
+      clientSecret: efbiz.org
+    resource:
+      userInfoUri: http://localhost:8030/uaa/user  

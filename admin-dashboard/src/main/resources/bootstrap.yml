@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: admin-dashboard
+  resources:
+    cachePeriod: 3600
+  aop:
+    proxy-target-class: true  
+eureka:
+  instance:
+    hostname: localhost
+    statusPageUrlPath: /mgmt/info
+    healthCheckUrlPath: /mgmt/health  
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://efbiz:efbiz.org@peer1:8761/eureka/,http://efbiz:efbiz.org@peer2:8762/eureka/,http://efbiz:efbiz.org@peer3:8763/eureka/
+
+spring.boot.admin:
+  routes.endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream
+  notify.mail.to: joni@efbiz.org    
+  notify.mail.from: joni@efbiz.org    
+  notify.mail.enabled: true
+  mail:
+    host: smtp.mxhichina.com
+    username: joni@efbiz.org
+    password: efbizAdmin520
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+  turbine:
+    clusters: default
+    location: turbine  #<1>
+  discovery.converter.management-context-path: /mgmt  
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:8030/uaa/oauth/token
+      userAuthorizationUri: http://localhost:8030/uaa/oauth/authorize
+      clientId: efbiz
+      clientSecret: efbiz.org
+    resource:
+      userInfoUri: http://localhost:8030/uaa/user
+
+zuul:
+  sensitiveHeaders:
+
+logging:
+  level:
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: DEBUG
+
+      

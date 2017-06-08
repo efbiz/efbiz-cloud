@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: oauth-server
+  sleuth:
+    sampler:
+      percentage: 1
+eureka:
+  instance:
+    hostname: localhost
+    statusPageUrlPath: ${server.contextPath}/${management.contextPath}/info
+    healthCheckUrlPath: ${server.contextPath}/${management.contextPath}/health  
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://efbiz:efbiz.org@peer1:8761/eureka/,http://efbiz:efbiz.org@peer2:8762/eureka/,http://efbiz:efbiz.org@peer3:8763/eureka/
+security:
+  oauth2:
+    client:
+      clientId: efbiz
+      clientSecret: efbiz.org
+      authorized-grant-types: authorization_code,refresh_token,password
+      scope: openid
+      access-token-validity-seconds: 600
+  user:
+    password: efbiz.org
+    name: user
+  sessions: if-required    
+endpoints:
+  shutdown:
+    enabled: true
+
+logging.level.org.springframework.security: INFO
+logging.level.org.springframework.security.oauth2: DEBUG

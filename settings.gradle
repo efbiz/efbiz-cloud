@@ -1,0 +1,8 @@
+rootProject.name = 'efbiz-cloud'
+
+include "eureka-server"
+include "zuul-server"
+include "hystrix-dashboard"
+include "admin-dashboard"
+include "zipkin-server"
+include "oauth-server"
