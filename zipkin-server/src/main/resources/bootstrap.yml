@@ -24,7 +24,8 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://efbiz:efbiz.org@peer1:8761/eureka/,http://efbiz:efbiz.org@peer2:8762/eureka/,http://efbiz:efbiz.org@peer3:8763/eureka/
+      defaultZone: http://efbiz:efbiz.org@192.168.71.205:8761/eureka/ 
+      #,http://efbiz:efbiz.org@peer2:8762/eureka/,http://efbiz:efbiz.org@peer3:8763/eureka/
 management:
   security.enabled: false
   contextPath: /mgmt

@@ -20,7 +20,7 @@ public class ZipkinServerApplication  extends WebSecurityConfigurerAdapter {
     
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/mgmt/health").permitAll().anyRequest()
+        http.authorizeRequests().antMatchers("/mgmt/*").permitAll().anyRequest()
                 .authenticated();
     }
     

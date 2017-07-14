@@ -1,8 +1,9 @@
 server:
   port: 8030
   contextPath: /uaa
-management:
-  contextPath: /mgmt
+management: 
+  context-path: /mgmt
+  add-application-context-header: false
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
