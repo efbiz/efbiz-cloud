@@ -18,16 +18,16 @@ zipkin:
 eureka:
   instance:
     hostname: localhost
-    statusPageUrlPath: /mgmt/info
-    healthCheckUrlPath: /mgmt/health 
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://efbiz:efbiz.org@peer1:8761/eureka/,http://efbiz:efbiz.org@peer2:8762/eureka/,http://efbiz:efbiz.org@peer3:8763/eureka/
-management:
-  security.enabled: false
-  contextPath: /mgmt
+      defaultZone: http://efbiz:efbiz.org@192.168.71.205:8761/eureka/
+      #defaultZone: http://efbiz:efbiz.org@peer1:8761/eureka/,http://efbiz:efbiz.org@peer2:8762/eureka/,http://efbiz:efbiz.org@peer3:8763/eureka/
+encrypt.failOnError: false
+management: 
+  context-path: /actuator
+  add-application-context-header: false
 endpoints.health.sensitive: false  
 security:
   oauth2:

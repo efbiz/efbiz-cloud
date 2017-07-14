@@ -1,9 +1,17 @@
 server:
   port: 8030
   contextPath: /uaa
-management:
-  contextPath: /mgmt
 spring:
+  redis: 
+    host: 192.168.71.85
+    port: 6379
+    password: Cass8888
+    database: 4
+    pool: 
+      min-idle: 1
+      max-idle: 5
+      max-active: 5
+      max-wait: -1
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driverClassName: com.mysql.jdbc.Driver
@@ -15,4 +23,9 @@ spring:
     idleTimeout: 600000
     maxLifetime: 1800000
     maximumPoolSize: 5
-    minimumIdle: 1  
+    minimumIdle: 1
+management: 
+  context-path: /mgmt
+  add-application-context-header: false
+webRoot: http://webagent.javats.com:10000
+commonStatic: http://ec-test.casstime.com/static        
