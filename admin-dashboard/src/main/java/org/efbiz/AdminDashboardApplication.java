@@ -11,17 +11,18 @@
  * limitations under the License.
  */
 package org.efbiz;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import com.hazelcast.config.Config;
+import com.hazelcast.config.EvictionPolicy;
+import com.hazelcast.config.ListConfig;
+import com.hazelcast.config.MapConfig;
+import de.codecentric.boot.admin.config.EnableAdminServer;
+import de.codecentric.boot.admin.notify.LoggingNotifier;
+import de.codecentric.boot.admin.notify.Notifier;
+import de.codecentric.boot.admin.notify.RemindingNotifier;
+import de.codecentric.boot.admin.notify.filter.FilteringNotifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
@@ -37,21 +38,20 @@ import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
-import com.hazelcast.config.Config;
-import com.hazelcast.config.EvictionPolicy;
-import com.hazelcast.config.ListConfig;
-import com.hazelcast.config.MapConfig;
-import de.codecentric.boot.admin.config.EnableAdminServer;
-import de.codecentric.boot.admin.notify.LoggingNotifier;
-import de.codecentric.boot.admin.notify.Notifier;
-import de.codecentric.boot.admin.notify.RemindingNotifier;
-import de.codecentric.boot.admin.notify.filter.FilteringNotifier;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableEurekaClient
 @EnableAutoConfiguration
 @EnableDiscoveryClient
 @EnableAdminServer
-@EnableOAuth2Sso
 public class AdminDashboardApplication extends WebSecurityConfigurerAdapter{
     @Bean
     public Config hazelcastConfig() {

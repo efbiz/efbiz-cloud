@@ -1,11 +1,12 @@
 buildscript {
     repositories {
-        mavenLocal()
         mavenCentral()
+        maven {
+            url 'http://repo.spring.io/milestone'
+        }
     }
     ext {
-        springBootVersion = '1.5.2.RELEASE'
-        springCloudVersion = 'Dalston.RELEASE'
+        springBootVersion = '2.0.1.RELEASE'
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -13,31 +14,29 @@ buildscript {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.0'
+    gradleVersion = '4.0'
 }
-
+ext {
+    springCloudVersion = 'Finchley.RC1'
+}
 repositories {
-    mavenLocal()
     mavenCentral()
+    maven {
+        url 'http://repo.spring.io/milestone'
+    }
 }
 
 subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 
-    repositories {
-        mavenLocal()
-        mavenCentral()
-    }
     buildscript {
-        repositories {
-            mavenLocal()
-            mavenCentral()
-        }
+
         dependencyManagement {
             imports {
                 mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
